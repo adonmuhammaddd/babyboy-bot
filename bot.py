@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from discord.ext import commands
 
 def main():
-    client = commands.Bot(command_prefix="?")
+    client = commands.Bot(command_prefix="+")
 
     load_dotenv()
 
