@@ -19,9 +19,10 @@ def main():
 
     @client.event
     async def on_member_join(member):
-        for channel in member.server.channels:
-            if channel.name == 'welcome':
-                await client.send_message(channel, 'Message to send when member joins')
+        for channel in client.get_all_channels():
+            if channel.name == 'general':
+                await channel.send(
+                    f'Hi {member.mention}, Message to send when member joins')
 
     @client.command()
     async def ping(ctx):
