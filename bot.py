@@ -3,33 +3,39 @@ from dotenv import load_dotenv
 from discord.ext import commands
 
 def main():
-    client = commands.Bot(command_prefix="+")
+    babybot = commands.Bot(command_prefix="+")
     message = "Welcome"
 
     load_dotenv()
 
-    @client.event
+    @babybot.event
     async def on_ready():
-        print(f"{client.user.name} has connected to Discord.")
+        print(f"{babybot.user.name} has connected to Discord.")
 
-    # @client.event
+    # @babybot.event
     # async def on_message(message):
     #     if (message.content.startswith("Hello")):
     #         await message.channel.send(f"Hi {message.author.mention}!")
 
-    @client.event
+    @babybot.event
     async def on_member_join(member):
-        for channel in client.get_all_channels():
-            if channel.name == 'kuntul':
-                await channel.send(
-                    f'Hi {member.mention}, Message to send when member joins')
+        channel = babybot.get_channel(524292657263017984)
+        embed=discord.Embed(title="Halo ya ges yak!",description=f"{member.mention} Just Joined")
+        await channel.send(embed=embed)
 
-    @client.command()
+    # @babybot.event
+    # async def on_member_join(member):
+    #     for channel in babybot.get_all_channels():
+    #         if channel.name == 'kuntul':
+    #             await channel.send(
+    #                 f'Hi {member.mention}, Message to send when member joins')
+
+    @babybot.command()
     async def ping(ctx):
         """Checks for a response from the bot"""
         await ctx.send("Pong")
 
-    client.run(os.getenv("DISCORD_TOKEN"))
+    babybot.run(os.getenv("DISCORD_TOKEN"))
 
 if __name__ == '__main__':
     main()
