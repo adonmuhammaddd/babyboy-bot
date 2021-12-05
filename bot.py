@@ -19,9 +19,8 @@ def main():
 
     @babybot.event
     async def on_member_join(member):
-        channel = babybot.get_channel(916958712273440798)
-        embed=discord.Embed(title="Halo ya ges yak!",description=f"{member.mention} Just Joined")
-        await channel.send(embed=embed)
+        channel = get(member.server.channels, name="general")
+        await babybot.send_message(channel,"welcome") 
 
     # @babybot.event
     # async def on_member_join(member):
