@@ -20,7 +20,7 @@ def main():
     @client.event
     async def on_member_join(member):
         for channel in client.get_all_channels():
-            if channel.name == 'welcome':
+            if channel.name == 'kuntul':
                 await channel.send(
                     f'Hi {member.mention}, Message to send when member joins')
 
