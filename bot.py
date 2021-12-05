@@ -4,6 +4,7 @@ from discord.ext import commands
 
 def main():
     babybot = commands.Bot(command_prefix="+")
+    client = discord.Client()
     message = "Welcome"
 
     load_dotenv()
@@ -17,17 +18,12 @@ def main():
     #     if (message.content.startswith("Hello")):
     #         await message.channel.send(f"Hi {message.author.mention}!")
 
-    @babybot.event
-    async def on_member_join(member):
-        channel = get(member.server.channels, name="general")
-        await babybot.send_message(channel,"welcome") 
-
-    # @babybot.event
-    # async def on_member_join(member):
-    #     for channel in babybot.get_all_channels():
-    #         if channel.name == 'kuntul':
-    #             await channel.send(
-    #                 f'Hi {member.mention}, Message to send when member joins')
+    @client.event
+    async def on_message_join(member):
+        channel = client.get_channel(channel_id)
+        embed=discord.Embed(title=f"Welcome Ya ges yak {member.name}", description=f"Thanks for joining {member.guild.name}!") # F-Strings!
+        embed.set_thumbnail(url=member.avatar_url) # Set the embed's thumbnail to the member's avatar image!
+        await channel.send(embed=embed)
 
     @babybot.command()
     async def ping(ctx):
