@@ -10,7 +10,7 @@ client = discord.Client(intents=intents)
 
 @client.event
 async def on_message_join(member):
-    channel = client.get_channel(channel_id)
+    channel = client.get_channel(524292657263017984)
     embed=discord.Embed(title=f"Welcome Ya ges yak {member.name}", description=f"Thanks for joining {member.guild.name}!") # F-Strings!
     embed.set_thumbnail(url=member.avatar_url) # Set the embed's thumbnail to the member's avatar image!
     await channel.send(embed=embed)
