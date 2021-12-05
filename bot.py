@@ -1,11 +1,22 @@
 import os
 from dotenv import load_dotenv
 from discord.ext import commands
+
+intents = discord.Intents.default()
+intents.members=True
 import discord
+
+client = discord.Client(intents=intents)
+
+@client.event
+async def on_message_join(member):
+    channel = client.get_channel(channel_id)
+    embed=discord.Embed(title=f"Welcome Ya ges yak {member.name}", description=f"Thanks for joining {member.guild.name}!") # F-Strings!
+    embed.set_thumbnail(url=member.avatar_url) # Set the embed's thumbnail to the member's avatar image!
+    await channel.send(embed=embed)
 
 def main():
     babybot = commands.Bot(command_prefix="+")
-    client = discord.Client()
     message = "Welcome"
 
     load_dotenv()
@@ -18,14 +29,6 @@ def main():
     # async def on_message(message):
     #     if (message.content.startswith("Hello")):
     #         await message.channel.send(f"Hi {message.author.mention}!")
-
-    @client.event
-    async def on_message_join(member):
-        chnnel_id = 524292657263017984
-        channel = client.get_channel(channel_id)
-        embed=discord.Embed(title=f"Welcome Ya ges yak {member.name}", description=f"Thanks for joining {member.guild.name}!") # F-Strings!
-        embed.set_thumbnail(url=member.avatar_url) # Set the embed's thumbnail to the member's avatar image!
-        await channel.send(embed=embed)
 
     @babybot.command()
     async def ping(ctx):
