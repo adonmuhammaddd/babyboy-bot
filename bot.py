@@ -2,9 +2,9 @@ import os
 from dotenv import load_dotenv
 from discord.ext import commands
 
+import discord
 intents = discord.Intents.default()
 intents.members=True
-import discord
 
 client = discord.Client(intents=intents)
 
