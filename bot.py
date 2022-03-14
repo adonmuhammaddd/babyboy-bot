@@ -14,7 +14,7 @@ import getHeader
 import db
 import getBalance
 load_dotenv()
-TOKEN = os.getenv('TOKEN')
+TOKEN = os.getenv('DISCORD_TOKEN')
 # TOKEN = os.getenv('DEV_TOKEN')
 # TOKEN = os.getenv('DEV_TOKEN3')
 
